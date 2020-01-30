@@ -81,8 +81,8 @@ public class Application {
 		DefaultMqttPahoClientFactory factory = new DefaultMqttPahoClientFactory();
 		MqttConnectOptions options = new MqttConnectOptions();
 		options.setServerURIs(new String[] { "tcp://localhost:1883" });
-		options.setUserName("guest");
-		options.setPassword("guest".toCharArray());
+		//options.setUserName("guest");
+		//options.setPassword("guest".toCharArray());
 		factory.setConnectionOptions(options);
 		return factory;
 	}
@@ -125,7 +125,7 @@ public class Application {
 	@Bean
 	public MessageProducerSupport mqttInbound() {
 		MqttPahoMessageDrivenChannelAdapter adapter = new MqttPahoMessageDrivenChannelAdapter("siSampleConsumer",
-				mqttClientFactory(), "siSampleTopic");
+				mqttClientFactory(), "foo");
 		adapter.setCompletionTimeout(5000);
 		adapter.setConverter(new DefaultPahoMessageConverter());
 		adapter.setQos(1);
